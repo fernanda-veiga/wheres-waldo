@@ -2,6 +2,10 @@ import React from "react";
 import wheresWaldoImg from "../images/wheres-waldo.jpg";
 import "../styles/App.css";
 
+//Import Firebase products
+import firebase from "firebase/app";
+import "firebase/firestore";
+
 function App() {
   function handleClick(event) {
     const IMG_WIDTH = event.target.width;
