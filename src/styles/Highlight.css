@@ -1,0 +1,71 @@
+.Highlight-square {
+  width: 7vw;
+  height: 7vw;
+  border: 3px solid black;
+  border-radius: 5px;
+  position: absolute;
+  display: none;
+  z-index: 1;
+  /*pointer-events: none;*/
+}
+
+.Highlight-menu {
+  background-color: white;
+  min-width: 150%;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  z-index: 2;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.Highlight-menu button img {
+  height: 2.5em;
+  width: auto;
+}
+
+.Highlight-menu button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.Highlight-menu button:hover {
+  background-color: lightgray;
+}
+
+.Highlight-odlaw,
+.Highlight-waldo,
+.Highlight-wenda,
+.Highlight-wizard {
+  background: none;
+  padding: 5px;
+  outline: none;
+  border: none;
+  color: black;
+}
+
+.Highlight-odlaw,
+.Highlight-waldo,
+.Highlight-wenda {
+  border-bottom: 1px solid black;
+}
+
+.Highlight-menu::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+}

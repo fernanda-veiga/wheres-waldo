@@ -1,6 +1,7 @@
 import React from "react";
 import wheresWaldoImg from "../images/wheres-waldo.jpg";
 import "../styles/App.css";
+import Highlight from "./Highlight";
 
 //Initialize Firebase products
 import firebase from "firebase/app";
@@ -25,7 +26,7 @@ let charactersDatabasePath = firebase
   .doc("4io2HrKnIaopfg1C8XMQ");
 
 function App() {
-  function handleClick(event) {
+  function showHighlight(event) {
     const imgWidth = event.target.offsetWidth;
     const imgHeight = event.target.offsetHeight;
     const clickX = event.pageX;
@@ -33,7 +34,7 @@ function App() {
     let characters;
 
     //Add a square to the click
-    const characterSquare = document.querySelector(".character-square");
+    const characterSquare = document.querySelector(".Highlight-square");
     if (
       window.getComputedStyle(characterSquare).getPropertyValue("display") ===
       "none"
@@ -106,8 +107,8 @@ function App() {
       <div className="Wizard"></div>
       <div className="Waldo"></div>
       <div className="Wanda"></div>
-      <div className="character-square"></div>
-      <img src={wheresWaldoImg} onClick={handleClick} alt="" />
+      <Highlight />
+      <img src={wheresWaldoImg} onClick={showHighlight} alt="" />
     </div>
   );
 }

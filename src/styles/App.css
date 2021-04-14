@@ -22,17 +22,6 @@
   pointer-events: none;
 }
 
-.character-square {
-  width: 7vw;
-  height: 7vw;
-  border: 3px solid black;
-  border-radius: 5px;
-  position: absolute;
-  display: none;
-  z-index: 1;
-  pointer-events: none;
-}
-
 .Odlaw {
   width: 25px;
   height: 30px;
