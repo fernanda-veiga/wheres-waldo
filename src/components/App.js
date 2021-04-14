@@ -33,8 +33,8 @@ function App() {
 
   return (
     <div className="App">
-      <div className="Odlaw">{clickX}</div>
-      <div className="Wizard">{clickY}</div>
+      <div className="Odlaw"></div>
+      <div className="Wizard"></div>
       <div className="Waldo"></div>
       <div className="Wanda"></div>
       <Highlight
