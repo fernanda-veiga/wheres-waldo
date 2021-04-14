@@ -18,27 +18,31 @@ let charactersDatabase = firebase
   .doc("4io2HrKnIaopfg1C8XMQ");
 
 function Highlight(props) {
+  let characters;
+  function getCharacters() {
+    charactersDatabase.get().then((doc) => {
+      characters = doc.data();
+    });
+  }
+  getCharacters();
+
   function checkCharacter(event) {
     const character = event.target.className.slice(10);
     const clickX = props.clickX;
     const clickY = props.clickY;
     const imgWidth = props.imgWidth;
     const imgHeight = props.imgHeight;
-    let characters;
 
-    charactersDatabase.get().then((doc) => {
-      characters = doc.data();
-      if (
-        clickX >= imgWidth * characters[character].x[0] &&
-        clickX <= imgWidth * characters[character].x[1] &&
-        clickY >= imgHeight * characters[character].y[0] &&
-        clickY <= imgHeight * characters[character].y[1]
-      ) {
-        console.log("You are right");
-      } else {
-        console.log("You are wrong");
-      }
-    });
+    if (
+      clickX >= imgWidth * characters[character].x[0] &&
+      clickX <= imgWidth * characters[character].x[1] &&
+      clickY >= imgHeight * characters[character].y[0] &&
+      clickY <= imgHeight * characters[character].y[1]
+    ) {
+      console.log("You are right");
+    } else {
+      console.log("You are wrong");
+    }
   }
 
   return (
