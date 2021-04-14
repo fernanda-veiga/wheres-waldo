@@ -28,15 +28,16 @@ function App() {
   function handleClick(event) {
     const imgWidth = event.target.offsetWidth;
     const imgHeight = event.target.offsetHeight;
-    console.log(imgWidth);
-    console.log(imgHeight);
     const clickX = event.pageX;
     const clickY = event.pageY;
     let characters;
 
     //Add a square to the click
     const characterSquare = document.querySelector(".character-square");
-    if (characterSquare.style.display === "none") {
+    if (
+      window.getComputedStyle(characterSquare).getPropertyValue("display") ===
+      "none"
+    ) {
       characterSquare.style.display = "block";
       characterSquare.style.top = `${clickY}px`;
       characterSquare.style.left = `${clickX}px`;
