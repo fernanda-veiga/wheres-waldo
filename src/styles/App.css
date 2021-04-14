@@ -11,7 +11,10 @@
   position: relative;
 }
 
-.App div {
+.Odlaw,
+.Wizard,
+.Waldo,
+.Wanda {
   border: 2px solid rgb(255, 0, 191);
   background-color: rgba(255, 0, 191, 0.5);
   position: absolute;
@@ -19,28 +22,39 @@
   pointer-events: none;
 }
 
-div .Odlaw {
+.character-square {
+  width: 7vw;
+  height: 7vw;
+  border: 3px solid black;
+  border-radius: 5px;
+  position: absolute;
+  display: none;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.Odlaw {
   width: 25px;
   height: 30px;
   top: 658px;
   left: 515px;
 }
 
-div .Wizard {
+.Wizard {
   width: 54px;
   height: 48px;
   top: 772px;
   left: 97px;
 }
 
-div .Waldo {
+.Waldo {
   width: 62px;
   height: 70px;
   top: 747px;
   left: 1393px;
 }
 
-div .Wanda {
+.Wanda {
   width: 20px;
   height: 45px;
   top: 425px;

@@ -15,7 +15,7 @@ let firebaseConfig = {
   appId: "1:795910774501:web:699def5b7b8224e4857e0c",
   measurementId: "G-YPJ5GZKGKJ",
 };
-firebase.initializeApp(firebaseConfig);
+!firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
 
 //
 
@@ -26,11 +26,31 @@ let charactersDatabasePath = firebase
 
 function App() {
   function handleClick(event) {
-    const imgWidth = event.target.width;
-    const imgHeight = event.target.height;
+    const imgWidth = event.target.offsetWidth;
+    const imgHeight = event.target.offsetHeight;
+    console.log(imgWidth);
+    console.log(imgHeight);
     const clickX = event.pageX;
     const clickY = event.pageY;
     let characters;
+
+    //Add a square to the click
+    const characterSquare = document.querySelector(".character-square");
+    if (characterSquare.style.display === "none") {
+      characterSquare.style.display = "block";
+      characterSquare.style.top = `${clickY}px`;
+      characterSquare.style.left = `${clickX}px`;
+      characterSquare.style.transform = `translate(-${
+        characterSquare.offsetWidth / 2
+      }px, -${characterSquare.offsetHeight / 2}px)`;
+    } else {
+      characterSquare.style.display = "none";
+    }
+
+    /*const characterSquare = document.createElement("div");
+    characterSquare.classList.add("character-square");
+    
+    event.target.appendChild(characterSquare);*/
 
     charactersDatabasePath.get().then((doc) => {
       characters = doc.data();
@@ -85,6 +105,7 @@ function App() {
       <div className="Wizard"></div>
       <div className="Waldo"></div>
       <div className="Wanda"></div>
+      <div className="character-square"></div>
       <img src={wheresWaldoImg} onClick={handleClick} alt="" />
     </div>
   );
