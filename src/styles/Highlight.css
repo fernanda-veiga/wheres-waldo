@@ -9,6 +9,17 @@
   /*pointer-events: none;*/
 }
 
+.Highlight-circle {
+  width: 7vw;
+  height: 7vw;
+  border: 3px solid red;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
 .Highlight-menu {
   background-color: white;
   min-width: 150%;
@@ -40,6 +51,11 @@
 
 .Highlight-menu button:hover {
   background-color: lightgray;
+}
+
+.Highlight-menu button:disabled {
+  text-decoration: line-through;
+  background-color: darkgrey;
 }
 
 .Highlight-odlaw,
