@@ -6,26 +6,13 @@ import wenda from "../images/wenda.png";
 import wizard from "../images/wizard.png";
 //import checkCharacter from "../utility/character";
 import { addCircle } from "../utility/highlight";
-
-//Initialize Firebase products
-import firebase from "firebase/app";
-import "firebase/firestore";
-import firebaseConfig from "../firebase";
-!firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
-
-let charactersDatabase = firebase
-  .firestore()
-  .collection("characters")
-  .doc("4io2HrKnIaopfg1C8XMQ");
+import getCharacters from "../firebase";
 
 function Highlight(props) {
   let characters;
-  function getCharacters() {
-    charactersDatabase.get().then((doc) => {
-      characters = doc.data();
-    });
-  }
-  getCharacters();
+  getCharacters().then((doc) => {
+    characters = doc.data();
+  });
 
   function checkCharacter(event) {
     const character = event.target.className.slice(10);
@@ -42,8 +29,13 @@ function Highlight(props) {
     ) {
       addCircle(clickX, clickY);
       event.target.disabled = true;
-      const characterSquare = document.querySelector(".Highlight-square");
-      characterSquare.style.display = "none";
+      document.querySelector(".Highlight-square").style.display = "none";
+
+      document.querySelector(".Header-" + character + "-img").style.filter =
+        "grayscale(100%)";
+      document.querySelector(
+        ".Header-" + character + "-name"
+      ).style.textDecoration = "line-through #ec2623 3px";
     }
   }
 
