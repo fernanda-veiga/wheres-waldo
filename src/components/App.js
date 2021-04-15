@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import wheresWaldoImg from "../images/wheres-waldo.jpg";
 import "../styles/App.css";
 import Highlight from "./Highlight";
+import Header from "./Header";
 import showHighlight from "../utility/highlight";
 
 //Initialize Firebase products
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <div className="Odlaw"></div>
       <div className="Wizard"></div>
       <div className="Waldo"></div>
