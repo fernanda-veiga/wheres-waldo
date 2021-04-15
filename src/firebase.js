@@ -1,3 +1,7 @@
+import firebase from "firebase/app";
+import "firebase/firestore";
+
+//Firebase configuration
 let firebaseConfig = {
   apiKey: "AIzaSyDoZ82DZFbGsMptB51tWfd3t0wx5g1qiJw",
   authDomain: "whereswaldo-5f140.firebaseapp.com",
@@ -8,4 +12,18 @@ let firebaseConfig = {
   measurementId: "G-YPJ5GZKGKJ",
 };
 
-export default firebaseConfig;
+//Initialize Firebase products
+!firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
+
+//Get characters positions
+let charactersDatabase = firebase
+  .firestore()
+  .collection("characters")
+  .doc("4io2HrKnIaopfg1C8XMQ");
+
+function getCharacters() {
+  return charactersDatabase.get();
+}
+
+//export default firebaseConfig;
+export default getCharacters;
