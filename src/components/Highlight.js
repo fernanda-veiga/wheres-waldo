@@ -5,6 +5,7 @@ import waldo from "../images/waldo.png";
 import wenda from "../images/wenda.png";
 import wizard from "../images/wizard.png";
 //import checkCharacter from "../utility/character";
+import { addCircle } from "../utility/highlight";
 
 //Initialize Firebase products
 import firebase from "firebase/app";
@@ -39,10 +40,17 @@ function Highlight(props) {
       clickY >= imgHeight * characters[character].y[0] &&
       clickY <= imgHeight * characters[character].y[1]
     ) {
-      console.log("You are right");
-    } else {
-      console.log("You are wrong");
+      addCircle(clickX, clickY);
+      event.target.disabled = true;
+      const characterSquare = document.querySelector(".Highlight-square");
+      characterSquare.style.display = "none";
     }
+  }
+
+  function allCharactersFound() {
+    const menu = document.querySelector(".Highlight-menu");
+    const allButtons = Array.from(menu.querySelectorAll("button"));
+    return allButtons.every((button) => button.disabled === true);
   }
 
   return (
