@@ -18,4 +18,13 @@ function showHighlight(event) {
   }
 }
 
+function addCircle(clickX, clickY) {
+  const circle = document.createElement("div");
+  circle.classList.add("Highlight-circle");
+  circle.style.top = `${clickY}px`;
+  circle.style.left = `${clickX}px`;
+  document.querySelector(".App").appendChild(circle);
+}
+
 export default showHighlight;
+export { addCircle };
