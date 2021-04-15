@@ -8,9 +8,15 @@ import wizard from "../images/wizard.png";
 
 function Character(props) {
   return (
-    <div className="Character-div">
-      <img src={props.img} alt={`${props.name} avatar`} />
-      <p>{props.name}</p>
+    <div className="Header-right-character">
+      <img
+        className={"Header-" + props.name + "-img"}
+        src={props.img}
+        alt={props.name + " avatar"}
+      />
+      <p className={"Header-" + props.name + "-name"}>
+        {props.name.charAt(0).toUpperCase() + props.name.slice(1)}
+      </p>
     </div>
   );
 }
@@ -23,11 +29,11 @@ function Header() {
         <h1>Where's Waldo</h1>
       </div>
       <div className="Header-right">
-        <Character img={odlaw} name={"Odlaw"} />
-        <Character img={waldo} name={"Waldo"} />
-        <Character img={wenda} name={"Wenda"} />
-        <Character img={wizard} name={"Wizard"} />
-        <p className="Header-timer">00:00</p>
+        <Character img={odlaw} name={"odlaw"} />
+        <Character img={waldo} name={"waldo"} />
+        <Character img={wenda} name={"wenda"} />
+        <Character img={wizard} name={"wizard"} />
+        <p className="Header-right-timer">00:00</p>
       </div>
     </header>
   );
