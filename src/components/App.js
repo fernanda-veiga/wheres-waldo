@@ -1,22 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import wheresWaldoImg from "../images/wheres-waldo.jpg";
 import "../styles/App.css";
 import Highlight from "./Highlight";
 import Header from "./Header";
 import showHighlight from "../utility/highlight";
 
-//Initialize Firebase products
-import firebase from "firebase/app";
-import "firebase/firestore";
-import firebaseConfig from "../firebase";
-!firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
-
-//
-
-/*let charactersDatabasePath = firebase
-  .firestore()
-  .collection("characters")
-  .doc("4io2HrKnIaopfg1C8XMQ");*/
+import { differenceInSeconds } from "date-fns";
 
 function App() {
   const [clickX, setClickX] = useState(0);
@@ -31,6 +20,25 @@ function App() {
     setImgHeight(event.target.offsetHeight);
     showHighlight(event);
   }
+
+  useEffect(() => {
+    const initialTime = new Date();
+    const timer = document.querySelector(".Header-right-timer");
+    const timerID = setInterval(() => {
+      const fullSeconds = differenceInSeconds(new Date(), initialTime);
+      const minutes =
+        Math.floor(fullSeconds / 60) < 10
+          ? `0${Math.floor(fullSeconds / 60)}`
+          : `${Math.floor(fullSeconds / 60)}`;
+      const seconds =
+        fullSeconds % 60 < 10 ? `0${fullSeconds % 60}` : `${fullSeconds % 60}`;
+      timer.innerHTML = `${minutes}:${seconds}`;
+    }, 1000);
+
+    return () => {
+      clearInterval(timerID);
+    };
+  }, []);
 
   return (
     <div className="App">
