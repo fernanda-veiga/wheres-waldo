@@ -21,28 +21,23 @@ function App() {
     showHighlight(event);
   }
 
+  const [time, setTime] = useState(0);
+
   useEffect(() => {
-    const initialTime = new Date();
-    const timer = document.querySelector(".Header-right-timer");
-    const timerID = setInterval(() => {
-      const fullSeconds = differenceInSeconds(new Date(), initialTime);
-      const minutes =
-        Math.floor(fullSeconds / 60) < 10
-          ? `0${Math.floor(fullSeconds / 60)}`
-          : `${Math.floor(fullSeconds / 60)}`;
-      const seconds =
-        fullSeconds % 60 < 10 ? `0${fullSeconds % 60}` : `${fullSeconds % 60}`;
-      timer.innerHTML = `${minutes}:${seconds}`;
-    }, 1000);
+    const timerID = setInterval(getTime, 1000);
+
+    function getTime() {
+      setTime(time + 1);
+    }
 
     return () => {
       clearInterval(timerID);
     };
-  }, []);
+  });
 
   return (
     <div className="App">
-      <Header />
+      <Header time={time} />
       <div className="Odlaw"></div>
       <div className="Wizard"></div>
       <div className="Waldo"></div>
