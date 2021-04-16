@@ -16,14 +16,16 @@ let firebaseConfig = {
 !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
 
 //Get characters positions
-let charactersDatabase = firebase
-  .firestore()
-  .collection("characters")
-  .doc("4io2HrKnIaopfg1C8XMQ");
+let charactersDatabase = firebase.firestore().collection("characters");
+//.doc("4io2HrKnIaopfg1C8XMQ");
 
-function getCharacters() {
-  return charactersDatabase.get();
+function getCharacters(character) {
+  return charactersDatabase.doc(character).get();
 }
 
+/*function updateCharacters(character, boolean) {
+  charactersDatabase.update({ [character]: { found: boolean } });
+}*/
+
 //export default firebaseConfig;
-export default getCharacters;
+export { getCharacters /*, updateCharacters*/ };
