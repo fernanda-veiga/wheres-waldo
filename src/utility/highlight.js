@@ -18,6 +18,11 @@ function showHighlight(event) {
   }
 }
 
+function hideHighlight(event) {
+  const characterSquare = document.querySelector(".Highlight-square");
+  characterSquare.style.display = "none";
+}
+
 function addCircle(clickX, clickY) {
   const circle = document.createElement("div");
   circle.classList.add("Highlight-circle");
@@ -27,4 +32,4 @@ function addCircle(clickX, clickY) {
 }
 
 export default showHighlight;
-export { addCircle };
+export { hideHighlight, addCircle };

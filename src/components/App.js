@@ -4,15 +4,45 @@ import "../styles/App.css";
 import Highlight from "./Highlight";
 import Header from "./Header";
 import showHighlight from "../utility/highlight";
-
-import { differenceInSeconds } from "date-fns";
+import { hideHighlight, addCircle } from "../utility/highlight";
+import { getCharacters, updateCharacters } from "../firebase";
+import changeCharacterDisplay from "../utility/display";
+import { roundToNearestMinutes } from "date-fns";
+import createCharacters from "../utility/characters";
 
 function App() {
   const [clickX, setClickX] = useState(0);
   const [clickY, setClickY] = useState(0);
   const [imgWidth, setImgWidth] = useState(0);
   const [imgHeight, setImgHeight] = useState(0);
+  const [time, setTime] = useState(0);
+  const [characters, setCharacters] = useState(createCharacters());
+  const [found, setFound] = useState(false);
 
+  /*useEffect(() => {
+    getCharacters().then((doc) => {
+      setCharacters(doc.data());
+    });
+  }, []);*/
+
+  let timerID;
+  useEffect(() => {
+    timerID = setInterval(getTime, 1000);
+    console.log(timerID);
+
+    function getTime() {
+      setTime(time + 1);
+    }
+
+    function stopTimer() {
+      clearInterval(timerID);
+    }
+
+    return stopTimer;
+  });
+  console.log(timerID);
+
+  //Functions that change state
   function handleImgClick(event) {
     setClickX(event.pageX);
     setClickY(event.pageY);
@@ -21,34 +51,62 @@ function App() {
     showHighlight(event);
   }
 
-  const [time, setTime] = useState(0);
+  function changeCharacterFoundStatus(character) {
+    const newCharacters = { ...characters };
+    newCharacters[character].found = true;
+    setCharacters(newCharacters);
+  }
 
-  useEffect(() => {
-    const timerID = setInterval(getTime, 1000);
-
-    function getTime() {
-      setTime(time + 1);
-    }
-
-    return () => {
+  function areAllCharactersFound() {
+    console.log(found);
+    if (
+      characters.odlaw.found &&
+      characters.waldo.found &&
+      characters.wenda.found &&
+      characters.wizard.found
+    ) {
       clearInterval(timerID);
-    };
-  });
+      setFound(true);
+      console.log(found);
+      console.log(time);
+    }
+  }
+
+  //Check if character is correct
+  function checkCharacter(event) {
+    const character = event.target.className.slice(10);
+
+    getCharacters(character).then((doc) => {
+      const characterData = doc.data();
+
+      //const characterData = characters[character];
+
+      if (
+        clickX >= imgWidth * characterData.x[0] &&
+        clickX <= imgWidth * characterData.x[1] &&
+        clickY >= imgHeight * characterData.y[0] &&
+        clickY <= imgHeight * characterData.y[1]
+      ) {
+        handleFindingCharacter(character);
+        areAllCharactersFound(characters);
+        event.target.disabled = true;
+      }
+    });
+  }
+
+  function handleFindingCharacter(character) {
+    addCircle(clickX, clickY);
+    changeCharacterFoundStatus(character);
+    //updateCharacters(character, true);
+    changeCharacterDisplay(character);
+  }
 
   return (
     <div className="App">
       <Header time={time} />
-      <div className="Odlaw"></div>
-      <div className="Wizard"></div>
-      <div className="Waldo"></div>
-      <div className="Wanda"></div>
-      <Highlight
-        clickX={clickX}
-        clickY={clickY}
-        imgWidth={imgWidth}
-        imgHeight={imgHeight}
-      />
+      <Highlight checkCharacter={checkCharacter} />
       <img src={wheresWaldoImg} onClick={handleImgClick} alt="" />
+      {found === true ? <div>{`GAME OVER. The time is ${time}`}</div> : null}
     </div>
   );
 }
