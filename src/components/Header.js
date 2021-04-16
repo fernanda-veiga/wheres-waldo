@@ -33,7 +33,7 @@ function Header() {
         <Character img={waldo} name={"waldo"} />
         <Character img={wenda} name={"wenda"} />
         <Character img={wizard} name={"wizard"} />
-        <p className="Header-right-timer">00:00</p>
+        <div className="Header-right-timer">00:00</div>
       </div>
     </header>
   );
