@@ -5,6 +5,7 @@ import odlaw from "../images/odlaw.png";
 import waldo from "../images/waldo.png";
 import wenda from "../images/wenda.png";
 import wizard from "../images/wizard.png";
+import secondsToTimeStr from "../utility/timer";
 
 function Character(props) {
   return (
@@ -21,7 +22,7 @@ function Character(props) {
   );
 }
 
-function Header() {
+function Header(props) {
   return (
     <header className="Header">
       <div className="Header-left">
@@ -33,7 +34,7 @@ function Header() {
         <Character img={waldo} name={"waldo"} />
         <Character img={wenda} name={"wenda"} />
         <Character img={wizard} name={"wizard"} />
-        <div className="Header-right-timer">00:00</div>
+        <div className="Header-right-timer">{secondsToTimeStr(props.time)}</div>
       </div>
     </header>
   );
