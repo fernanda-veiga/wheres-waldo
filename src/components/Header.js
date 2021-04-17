@@ -29,13 +29,23 @@ function Header(props) {
         <img src={waldoLogo} alt="Waldo" />
         <h1>Where's Waldo</h1>
       </div>
-      <div className="Header-right">
-        <Character img={odlaw} name={"odlaw"} />
-        <Character img={waldo} name={"waldo"} />
-        <Character img={wenda} name={"wenda"} />
-        <Character img={wizard} name={"wizard"} />
-        <div className="Header-right-timer">{secondsToTimeStr(props.time)}</div>
-      </div>
+      {props.type === "homepage" ? (
+        <div className="Header-right">
+          <button type="button" className="Header-leaderboard">
+            Leaderboard
+          </button>
+        </div>
+      ) : (
+        <div className="Header-right">
+          <Character img={odlaw} name={"odlaw"} />
+          <Character img={waldo} name={"waldo"} />
+          <Character img={wenda} name={"wenda"} />
+          <Character img={wizard} name={"wizard"} />
+          <div className="Header-right-timer">
+            {secondsToTimeStr(props.time)}
+          </div>
+        </div>
+      )}
     </header>
   );
 }

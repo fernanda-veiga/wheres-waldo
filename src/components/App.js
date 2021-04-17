@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import wheresWaldoImg from "../images/wheres-waldo.jpg";
 import "../styles/App.css";
 import Highlight from "./Highlight";
-import Header from "./Header";
+//import Header from "./Header";
 import showHighlight from "../utility/highlight";
 import { hideHighlight, addCircle } from "../utility/highlight";
 import { getCharacters, updateCharacters } from "../firebase";
 import changeCharacterDisplay from "../utility/display";
 import { roundToNearestMinutes } from "date-fns";
 import createCharacters from "../utility/characters";
+import { HashRouter, Switch, Route } from "react-router-dom";
+import Homepage from "./Homepage";
 
 function App() {
   const [clickX, setClickX] = useState(0);
@@ -25,9 +27,8 @@ function App() {
     });
   }, []);*/
 
-  let timerID;
   useEffect(() => {
-    timerID = setInterval(getTime, 1000);
+    const timerID = setInterval(getTime, 1000);
     console.log(timerID);
 
     function getTime() {
@@ -40,7 +41,6 @@ function App() {
 
     return stopTimer;
   });
-  console.log(timerID);
 
   //Functions that change state
   function handleImgClick(event) {
@@ -65,7 +65,7 @@ function App() {
       characters.wenda.found &&
       characters.wizard.found
     ) {
-      clearInterval(timerID);
+      //clearInterval(timerID);
       setFound(true);
       console.log(found);
       console.log(time);
@@ -102,13 +102,33 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <HashRouter basename="/">
+      <div className="App">
+        {/*<Header time={time} />*/}
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          {/*<Route
+            exact
+            path="/shop"
+            render={(props) => (
+              <Shop
+                {...props}
+                handleChange={handleChange}
+                addToCart={addToCart}
+              />
+            )}
+            />*/}
+        </Switch>
+      </div>
+    </HashRouter>
+  );
+}
+
+/*<div className="App">
       <Header time={time} />
       <Highlight checkCharacter={checkCharacter} />
       <img src={wheresWaldoImg} onClick={handleImgClick} alt="" />
       {found === true ? <div>{`GAME OVER. The time is ${time}`}</div> : null}
-    </div>
-  );
-}
+            </div>*/
 
 export default App;
