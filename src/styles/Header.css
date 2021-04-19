@@ -63,26 +63,3 @@
 
   background-color: white;
 }
-
-/*.Header-right-character {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  height: 100%;
-
-  font-family: "Poppins", sans-serif;
-}
-
-.Header-right-character img {
-  width: auto;
-  height: 70%;
-}
-
-.Header-right-timer {
-  margin-left: 20px;
-
-  font-family: "Poppins", sans-serif;
-  font-size: 2em;
-}*/
