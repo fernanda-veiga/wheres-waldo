@@ -12,4 +12,7 @@ function createCharacters() {
   };
 }
 
+const charactersNames = ["odlaw", "waldo", "wenda", "wizard"];
+
 export default createCharacters;
+export { charactersNames };
