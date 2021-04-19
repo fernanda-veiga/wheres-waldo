@@ -1,31 +1,53 @@
 import React, { useState, useEffect } from "react";
-import wheresWaldoImg from "../images/wheres-waldo.jpg";
-import "../styles/App.css";
-import Highlight from "./Highlight";
-//import Header from "./Header";
-import showHighlight from "../utility/highlight";
-import { hideHighlight, addCircle } from "../utility/highlight";
-import { getCharacters, updateCharacters } from "../firebase";
-import changeCharacterDisplay from "../utility/display";
-import { roundToNearestMinutes } from "date-fns";
-import createCharacters from "../utility/characters";
+
+//Components
+import Game from "./Game";
+import Leaderboard from "./Leaderboard";
+
+//Packages
 import { HashRouter, Switch, Route } from "react-router-dom";
-import Homepage from "./Homepage";
+
+//CSS
+import "../styles/App.css";
+
+//import wheresWaldoImg from "../images/wheres-waldo.jpg";
+//
+//import Highlight from "./Highlight";
+//import Header from "./Header";
+//import showHighlight from "../utility/highlight";
+//import { hideHighlight, addCircle } from "../utility/highlight";
+//import { getCharacters, updateCharacters } from "../firebase";
+//import changeCharacterDisplay from "../utility/display";
+//import { roundToNearestMinutes } from "date-fns";
+//import createCharacters from "../utility/characters";
+//
+//import Homepage from "./Homepage";
+//import Level01 from "./Level01";
+//import { render } from "@testing-library/react";
 
 function App() {
+  return (
+    <HashRouter basename="/">
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={Game} />
+          <Route exact path="/leaderboard" component={Leaderboard} />
+        </Switch>
+      </div>
+    </HashRouter>
+  );
+}
+
+/*function App() {
   const [clickX, setClickX] = useState(0);
   const [clickY, setClickY] = useState(0);
   const [imgWidth, setImgWidth] = useState(0);
   const [imgHeight, setImgHeight] = useState(0);
   const [time, setTime] = useState(0);
   const [characters, setCharacters] = useState(createCharacters());
-  const [found, setFound] = useState(false);
-
-  /*useEffect(() => {
-    getCharacters().then((doc) => {
-      setCharacters(doc.data());
-    });
-  }, []);*/
+  const [gameStart, setGameStart] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+  //const [found, setFound] = useState(false);
 
   useEffect(() => {
     const timerID = setInterval(getTime, 1000);
@@ -88,7 +110,7 @@ function App() {
         clickY <= imgHeight * characterData.y[1]
       ) {
         handleFindingCharacter(character);
-        areAllCharactersFound(characters);
+        //areAllCharactersFound(characters);
         event.target.disabled = true;
       }
     });
@@ -104,9 +126,20 @@ function App() {
   return (
     <HashRouter basename="/">
       <div className="App">
-        {/*<Header time={time} />*/}
-        <Switch>
+        {/*<Header time={time} />*/
+/*<Switch>
           <Route exact path="/" component={Homepage} />
+          <Route
+            exact
+            path="/level01"
+            render={(props) => (
+              <Level01
+                {...props}
+                checkCharacter={checkCharacter}
+                handleImgClick={handleImgClick}
+              />
+            )}
+          />
           {/*<Route
             exact
             path="/shop"
@@ -117,12 +150,12 @@ function App() {
                 addToCart={addToCart}
               />
             )}
-            />*/}
-        </Switch>
+            />*/
+/* </Switch>
       </div>
     </HashRouter>
   );
-}
+}*/
 
 /*<div className="App">
       <Header time={time} />
