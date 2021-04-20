@@ -1,0 +1,99 @@
+.Game-popup-container {
+  position: fixed;
+  top: 200px;
+  left: 0;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 200px);
+
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.Game-popup {
+  display: flex;
+  width: 50%;
+  height: 80%;
+
+  border-radius: 10px;
+}
+
+.Game-popup-img {
+  width: 60%;
+  height: 100%;
+
+  border-radius: 10px 0px 0px 10px;
+
+  object-fit: cover;
+}
+
+.Game-popup-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  width: 40%;
+  height: 100%;
+  padding: 20px;
+
+  background-color: white;
+}
+
+.Game-popup-info > p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.Game-popup-info > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+}
+
+.Game-popup-info > button {
+  min-width: 130px;
+  padding: 10px;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+  background-color: #ec2623;
+  border: 2px solid #ec2623;
+  border-radius: 8px;
+
+  transition: all 0.3s ease-in;
+}
+
+.Game-popup-info > button:hover {
+  color: #ec2623;
+
+  background-color: white;
+}
+
+.Game-popup-info-character {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.Game-popup-info-character > img {
+  width: auto;
+  height: 100px;
+}
+
+.Game-popup-info-character > p {
+  font-family: "Poppins", sans-serif;
+}
