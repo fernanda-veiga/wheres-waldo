@@ -6,10 +6,19 @@ import Characters from "./game-components/Characters";
 import StartPopup from "./game-components/StartPopup";
 import EndPopup from "./game-components/EndPopup";
 import Highlight from "./game-components/Highlight";
+import Info from "./game-components/Info";
 
 //Utility
 import createCharacters, { charactersNames } from "../utility/characters";
-import { showHighlight, changeElementDisplay } from "../utility/dom";
+import {
+  showHighlight,
+  hideHighlight,
+  makeCharacterGray,
+  showInfoBox,
+  handleStartGameDom,
+  handleEndGameDom,
+  handlePlayAgainDom,
+} from "../utility/dom";
 import { getCharacters } from "../firebase";
 import calculateTimeSpent from "../utility/timer";
 
@@ -27,18 +36,22 @@ function Game() {
   const [click, setClick] = useState({ x: 0, y: 0 });
   const [imgSize, setImgSize] = useState({ w: 0, h: 0 });
   const [time, setTime] = useState(0);
-  //const [startTime, setStartTime] = useState({});
-  //const [endTime, setEndTime] = useState({});
-
-  //console.log(characters);
+  const [infoMsg, setInfoMsg] = useState("");
 
   function startGame() {
-    document.querySelector(".Game-popup-container").style.display = "none";
-    document
-      .querySelectorAll(".Highlight-btn")
-      .forEach((btn) => (btn.disabled = false));
+    handleStartGameDom();
     characters = createCharacters();
     startTime = new Date();
+  }
+
+  function endGame() {
+    endTime = new Date();
+    setTime(calculateTimeSpent(endTime, startTime));
+    handleEndGameDom();
+  }
+
+  function playAgain() {
+    handlePlayAgainDom();
   }
 
   function handleImgClick(event) {
@@ -60,41 +73,38 @@ function Game() {
         click.y >= imgSize.h * characterData.y[0] + HEADER_HEIGHT &&
         click.y <= imgSize.h * characterData.y[1] + HEADER_HEIGHT
       ) {
-        console.log("character found");
         event.target.disabled = true;
-        characterFound(character);
-        changeElementDisplay(character);
-        allCharactersFound();
+        handleCharacterFound(character);
+      } else {
+        handleCharacterNotFound();
       }
+
+      hideHighlight();
     });
   }
 
-  function characterFound(character) {
+  function handleCharacterFound(character) {
+    const characterNameUppercase =
+      character.charAt(0).toUpperCase() + character.slice(1);
+
     characters[character].found = true;
+    makeCharacterGray(character);
+    setInfoMsg("You found " + characterNameUppercase + "!");
+    showInfoBox();
+    allCharactersFound();
+  }
+
+  function handleCharacterNotFound() {
+    setInfoMsg("Try again!");
+    showInfoBox();
   }
 
   function allCharactersFound() {
     if (
       charactersNames.every((character) => characters[character].found === true)
     ) {
-      console.log("All characters found");
-      //setEndTime(new Date());
       endGame();
     }
-  }
-
-  function endGame() {
-    endTime = new Date();
-    setTime(calculateTimeSpent(endTime, startTime));
-    document.querySelector(".Game-end-popup-container").style.display = "flex";
-  }
-
-  function playAgain() {
-    document.querySelector(".Game-popup-container").style.display = "flex";
-    document.querySelector(".Game-end-popup-container").style.display = "none";
-    document
-      .querySelectorAll(".Game-info-character-img")
-      .forEach((img) => (img.style.filter = "none"));
   }
 
   return (
@@ -102,6 +112,7 @@ function Game() {
       <Header type="game" />
       <div className="Game-content">
         <Highlight checkCharacter={checkCharacter} />
+        <Info msg={infoMsg} />
         <div className="Game-info">
           <Characters />
         </div>
