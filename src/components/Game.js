@@ -1,3 +1,6 @@
+//TODO: add the leaderboard
+//TODO: display a timer
+
 import React, { useState } from "react";
 
 //Components
