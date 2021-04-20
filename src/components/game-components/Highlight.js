@@ -9,7 +9,7 @@ import createCharacters, { charactersNames } from "../../utility/characters";
 //import { addCircle } from "../../utility/highlight";
 //import getCharacters from "../../firebase";
 
-function Highlight() {
+function Highlight(props) {
   const characters = createCharacters();
 
   return (
@@ -18,8 +18,10 @@ function Highlight() {
         {charactersNames.map((character) => {
           return (
             <button
+              key={"Highlight-btn-" + character}
               className={"Highlight-btn"}
               id={"Highlight-btn-" + character}
+              onClick={props.checkCharacter}
             >
               <img
                 src={characters[character].img}
