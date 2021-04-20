@@ -14,7 +14,10 @@ function Popup(props) {
           <p>Find the following characters:</p>
           <div className="Game-popup-info-characters">
             {charactersNames.map((character) => (
-              <div className="Game-popup-info-character">
+              <div
+                key={"Game-popup-info-character-" + character}
+                className="Game-popup-info-character"
+              >
                 <img
                   src={characters[character].img}
                   alt={character + " avatar"}

@@ -8,6 +8,7 @@ function Characters() {
     <div className="Game-info-character">
       {charactersNames.map((character) => (
         <img
+          key={"Game-info-character-img-" + character}
           className="Game-info-character-img"
           id={"Game-info-character-img-" + character}
           src={characters[character].img}
