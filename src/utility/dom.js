@@ -21,18 +21,14 @@ function showHighlight(click) {
   }
 }
 
-/*function hideHighlight(event) {
-  const characterSquare = document.querySelector(".Highlight-square");
-  characterSquare.style.display = "none";
+function changeElementDisplay(character) {
+  const highlightSquare = document.querySelector(".Highlight-circle");
+  const headerCharacterImg = document.querySelector(
+    "#Game-info-character-img-" + character
+  );
+
+  highlightSquare.style.display = "none";
+  headerCharacterImg.style.filter = "grayscale(100%)";
 }
 
-function addCircle(clickX, clickY) {
-  const circle = document.createElement("div");
-  circle.classList.add("Highlight-circle");
-  circle.style.top = `${clickY}px`;
-  circle.style.left = `${clickX}px`;
-  document.querySelector(".App").appendChild(circle);
-}*/
-
-export default showHighlight;
-//export { hideHighlight, addCircle };
+export { showHighlight, changeElementDisplay };
