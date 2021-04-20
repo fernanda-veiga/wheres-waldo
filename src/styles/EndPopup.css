@@ -1,0 +1,77 @@
+.Game-end-popup-container {
+  position: fixed;
+  top: 200px;
+  left: 0;
+  z-index: 1;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 200px);
+
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.Game-end-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  width: 50%;
+  height: 80%;
+  padding: 50px;
+
+  background-color: white;
+  border-radius: 10px;
+}
+
+.Game-end-popup-text {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.Game-end-popup-input {
+  padding: 8px;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+
+  outline: none;
+  border: 2px solid #ec2623;
+  border-radius: 8px;
+}
+
+.Game-end-popup-btn {
+  display: flex;
+  gap: 20px;
+}
+
+.Game-end-popup-btn button {
+  min-width: 130px;
+  padding: 10px;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+  background-color: #ec2623;
+  border: 2px solid #ec2623;
+  border-radius: 8px;
+
+  transition: all 0.3s ease-in;
+}
+
+.Game-end-popup-btn button:hover {
+  color: #ec2623;
+
+  background-color: white;
+  outline: none;
+}

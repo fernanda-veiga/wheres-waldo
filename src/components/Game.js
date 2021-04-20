@@ -3,13 +3,15 @@ import React, { useState } from "react";
 //Components
 import Header from "./Header";
 import Characters from "./game-components/Characters";
-import Popup from "./game-components/Popup";
+import StartPopup from "./game-components/StartPopup";
+import EndPopup from "./game-components/EndPopup";
 import Highlight from "./game-components/Highlight";
 
 //Utility
 import createCharacters, { charactersNames } from "../utility/characters";
 import { showHighlight, changeElementDisplay } from "../utility/dom";
 import { getCharacters } from "../firebase";
+import calculateTimeSpent from "../utility/timer";
 
 //Images
 import wheresWaldoImg from "../images/wheres-waldo.jpg";
@@ -17,21 +19,23 @@ import wheresWaldoImg from "../images/wheres-waldo.jpg";
 //CSS
 import "../styles/Game.css";
 
-//import secondsToTimeStr from "../utility/timer";
-
 const characters = createCharacters();
+let startTime = {};
+let endTime = {};
 
 function Game() {
   const [click, setClick] = useState({ x: 0, y: 0 });
   const [imgSize, setImgSize] = useState({ w: 0, h: 0 });
-  const [startTime, setStartTime] = useState({});
-  const [endTime, setEndTime] = useState({});
+  const [time, setTime] = useState(0);
+  //const [startTime, setStartTime] = useState({});
+  //const [endTime, setEndTime] = useState({});
 
   //console.log(characters);
 
   function startGame() {
     document.querySelector(".Game-popup-container").style.display = "none";
-    setStartTime(new Date());
+    //setStartTime(new Date());
+    startTime = new Date();
   }
 
   function handleImgClick(event) {
@@ -71,7 +75,15 @@ function Game() {
       charactersNames.every((character) => characters[character].found === true)
     ) {
       console.log("All characters found");
+      //setEndTime(new Date());
+      endGame();
     }
+  }
+
+  function endGame() {
+    endTime = new Date();
+    setTime(calculateTimeSpent(endTime, startTime));
+    document.querySelector(".Game-end-popup-container").style.display = "flex";
   }
 
   return (
@@ -82,7 +94,8 @@ function Game() {
         <div className="Game-info">
           <Characters />
         </div>
-        <Popup startGame={startGame} />
+        <StartPopup startGame={startGame} />
+        <EndPopup time={time} />
         <img
           className="Game-img"
           src={wheresWaldoImg}

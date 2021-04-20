@@ -1,9 +1,9 @@
 import React from "react";
 import createCharacters, { charactersNames } from "../../utility/characters";
 import wheresWaldoImg from "../../images/wheres-waldo.jpg";
-import "../../styles/Popup.css";
+import "../../styles/StartPopup.css";
 
-function Popup(props) {
+function StartPopup(props) {
   const characters = createCharacters();
 
   return (
@@ -33,4 +33,4 @@ function Popup(props) {
   );
 }
 
-export default Popup;
+export default StartPopup;
