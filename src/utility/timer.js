@@ -1,12 +1,24 @@
-function secondsToTimeStr(fullSeconds) {
-  const minutes =
-    Math.floor(fullSeconds / 60) < 10
-      ? `0${Math.floor(fullSeconds / 60)}`
-      : `${Math.floor(fullSeconds / 60)}`;
-  const seconds =
-    fullSeconds % 60 < 10 ? `0${fullSeconds % 60}` : `${fullSeconds % 60}`;
+import { differenceInSeconds } from "date-fns";
 
-  return `${minutes}:${seconds}`;
+function calculateTimeSpent(endTime, startTime) {
+  console.log(startTime.toLocaleTimeString());
+  console.log(endTime.toLocaleTimeString());
+  const fullSeconds = differenceInSeconds(endTime, startTime);
+  console.log(fullSeconds);
+
+  const hours = Math.floor(fullSeconds / 3600);
+  const minutes = Math.floor((fullSeconds % 3600) / 60);
+  const seconds = fullSeconds % 60;
+
+  const timeStr =
+    (hours < 10 ? "0" + hours : hours) +
+    ":" +
+    (minutes < 10 ? "0" + minutes : minutes) +
+    ":" +
+    (seconds < 10 ? "0" + seconds : seconds);
+
+  console.log(timeStr);
+  return timeStr;
 }
 
-export default secondsToTimeStr;
+export default calculateTimeSpent;
