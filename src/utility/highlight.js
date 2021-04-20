@@ -1,24 +1,27 @@
-function showHighlight(event) {
-  const clickX = event.pageX;
-  const clickY = event.pageY;
-  const characterSquare = document.querySelector(".Highlight-square");
+function showHighlight(click) {
+  const highlight = document.querySelector(".Highlight-circle");
+  const highlightMenu = document.querySelector(".Highlight-menu");
 
   if (
-    window.getComputedStyle(characterSquare).getPropertyValue("display") ===
-    "none"
+    window.getComputedStyle(highlight).getPropertyValue("display") === "none"
   ) {
-    characterSquare.style.display = "block";
-    characterSquare.style.top = `${clickY}px`;
-    characterSquare.style.left = `${clickX}px`;
-    characterSquare.style.transform = `translate(-${
-      characterSquare.offsetWidth / 2
-    }px, -${characterSquare.offsetHeight / 2}px)`;
+    highlight.style.display = "block";
+    highlight.style.top = click.y + "px";
+    highlight.style.left = click.x + "px";
   } else {
-    characterSquare.style.display = "none";
+    highlight.style.display = "none";
+  }
+
+  if (click.y < window.innerHeight - 300) {
+    highlightMenu.style.top = "120%";
+    highlightMenu.style.bottom = "auto";
+  } else {
+    highlightMenu.style.top = "auto";
+    highlightMenu.style.bottom = "120%";
   }
 }
 
-function hideHighlight(event) {
+/*function hideHighlight(event) {
   const characterSquare = document.querySelector(".Highlight-square");
   characterSquare.style.display = "none";
 }
@@ -29,7 +32,7 @@ function addCircle(clickX, clickY) {
   circle.style.top = `${clickY}px`;
   circle.style.left = `${clickX}px`;
   document.querySelector(".App").appendChild(circle);
-}
+}*/
 
 export default showHighlight;
-export { hideHighlight, addCircle };
+//export { hideHighlight, addCircle };
