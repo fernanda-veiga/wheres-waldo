@@ -44,20 +44,27 @@
 
 .Highlight-btn:disabled {
   text-decoration: line-through;
+
+  pointer-events: none;
   background-color: darkgrey;
+  filter: grayscale(100%);
 }
 
 .Highlight-btn p {
   font-family: "Poppins", sans-serif;
   font-size: 1.2em;
+
+  pointer-events: none;
 }
 
 .Highlight-btn img {
   width: auto;
   height: 2.5em;
+
+  pointer-events: none;
 }
 
-.Highlight-btn:hover {
+.Highlight-btn:hover:enabled {
   background-color: lightgray;
 }
 
