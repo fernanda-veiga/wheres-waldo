@@ -21,14 +21,54 @@ function showHighlight(click) {
   }
 }
 
-function changeElementDisplay(character) {
-  const highlightSquare = document.querySelector(".Highlight-circle");
+function hideHighlight() {
+  const highlight = document.querySelector(".Highlight-circle");
+  highlight.style.display = "none";
+}
+
+function makeCharacterGray(character) {
   const headerCharacterImg = document.querySelector(
     "#Game-info-character-img-" + character
   );
-
-  highlightSquare.style.display = "none";
   headerCharacterImg.style.filter = "grayscale(100%)";
 }
 
-export { showHighlight, changeElementDisplay };
+function showInfoBox() {
+  const infoBox = document.querySelector(".Game-info-box");
+  infoBox.style.top = "220px";
+  infoBox.style.opacity = "1";
+
+  setTimeout(() => {
+    infoBox.style.top = "150px";
+    infoBox.style.opacity = "0";
+  }, 5000);
+}
+
+function handleStartGameDom() {
+  document.querySelector(".Game-popup-container").style.display = "none";
+  document
+    .querySelectorAll(".Highlight-btn")
+    .forEach((btn) => (btn.disabled = false));
+}
+
+function handleEndGameDom() {
+  document.querySelector(".Game-end-popup-container").style.display = "flex";
+}
+
+function handlePlayAgainDom() {
+  document.querySelector(".Game-popup-container").style.display = "flex";
+  document.querySelector(".Game-end-popup-container").style.display = "none";
+  document
+    .querySelectorAll(".Game-info-character-img")
+    .forEach((img) => (img.style.filter = "none"));
+}
+
+export {
+  showHighlight,
+  hideHighlight,
+  makeCharacterGray,
+  showInfoBox,
+  handleStartGameDom,
+  handleEndGameDom,
+  handlePlayAgainDom,
+};
