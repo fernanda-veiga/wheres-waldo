@@ -19,7 +19,7 @@ import wheresWaldoImg from "../images/wheres-waldo.jpg";
 //CSS
 import "../styles/Game.css";
 
-const characters = createCharacters();
+let characters = {};
 let startTime = {};
 let endTime = {};
 
@@ -34,7 +34,10 @@ function Game() {
 
   function startGame() {
     document.querySelector(".Game-popup-container").style.display = "none";
-    //setStartTime(new Date());
+    document
+      .querySelectorAll(".Highlight-btn")
+      .forEach((btn) => (btn.disabled = false));
+    characters = createCharacters();
     startTime = new Date();
   }
 
@@ -86,6 +89,14 @@ function Game() {
     document.querySelector(".Game-end-popup-container").style.display = "flex";
   }
 
+  function playAgain() {
+    document.querySelector(".Game-popup-container").style.display = "flex";
+    document.querySelector(".Game-end-popup-container").style.display = "none";
+    document
+      .querySelectorAll(".Game-info-character-img")
+      .forEach((img) => (img.style.filter = "none"));
+  }
+
   return (
     <div className="Game">
       <Header type="game" />
@@ -95,7 +106,7 @@ function Game() {
           <Characters />
         </div>
         <StartPopup startGame={startGame} />
-        <EndPopup time={time} />
+        <EndPopup time={time} playAgain={playAgain} />
         <img
           className="Game-img"
           src={wheresWaldoImg}

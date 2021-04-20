@@ -18,7 +18,12 @@ function EndPopup(props) {
         ></input>
         <div className="Game-end-popup-btn">
           <button className="Game-end-popup-btn-save">SAVE SCORE</button>
-          <button className="Game-end-popup-btn-again">PLAY AGAIN</button>
+          <button
+            className="Game-end-popup-btn-again"
+            onClick={props.playAgain}
+          >
+            PLAY AGAIN
+          </button>
         </div>
       </div>
     </div>
