@@ -1,0 +1,44 @@
+.Leaderboard-content {
+  padding: 170px 50px 50px 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Leaderboard-content-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+.Leaderboard-content-container h1 {
+  padding: 10px;
+
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  color: #ec2623;
+
+  border-bottom: 1px solid black;
+}
+
+.Leaderboard-content-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Leaderboard-card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  padding: 8px;
+
+  border-bottom: 1px solid black;
+}
+
+.Leaderboard-card div {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2em;
+  text-align: center;
+}
