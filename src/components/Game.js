@@ -22,7 +22,7 @@ import {
   handleEndGameDom,
   handlePlayAgainDom,
 } from "../utility/dom";
-import { getCharacters, charactersDatabase } from "../firebase";
+import { charactersDatabase } from "../firebase";
 import calculateTimeSpent from "../utility/timer";
 
 //Images

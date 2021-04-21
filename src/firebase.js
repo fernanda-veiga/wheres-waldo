@@ -19,21 +19,14 @@ let firebaseConfig = {
 let charactersDatabase = firebase.firestore().collection("characters");
 
 let leaderboardDatabase = firebase.firestore().collection("leaderboard");
-//.doc("scores");
 
 //Data functions
-function getCharacters(character) {
-  return charactersDatabase.doc(character).get();
-}
-
 function storeLeaderboardData(time) {
   const nameInput = document.querySelector(".Game-end-popup-input");
-  //leaderboardDatabase.update({ name: nameInput.value, time: time });
   leaderboardDatabase.add({
     name: nameInput.value,
     time: time,
   });
 }
 
-//export default firebaseConfig;
-export { getCharacters, storeLeaderboardData /*, updateCharacters*/ };
+export { charactersDatabase, storeLeaderboardData };
