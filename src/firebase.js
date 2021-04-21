@@ -23,10 +23,19 @@ let leaderboardDatabase = firebase.firestore().collection("leaderboard");
 //Data functions
 function storeLeaderboardData(time) {
   const nameInput = document.querySelector(".Game-end-popup-input");
+
+  if (nameInput.value === "") {
+    leaderboardDatabase.add({
+      name: "Anonymous",
+      time: time,
+    });
+    return;
+  }
   leaderboardDatabase.add({
     name: nameInput.value,
     time: time,
   });
+  return;
 }
 
 export { charactersDatabase, storeLeaderboardData };
