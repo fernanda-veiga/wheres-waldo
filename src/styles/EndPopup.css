@@ -65,6 +65,7 @@
   background-color: #ec2623;
   border: 2px solid #ec2623;
   border-radius: 8px;
+  outline: none;
 
   transition: all 0.3s ease-in;
 }

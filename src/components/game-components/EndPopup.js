@@ -3,6 +3,7 @@ import React from "react";
 //import wheresWaldoImg from "../../images/wheres-waldo.jpg";
 import { storeLeaderboardData } from "../../firebase";
 import "../../styles/EndPopup.css";
+import { Link } from "react-router-dom";
 
 function EndPopup(props) {
   //const characters = createCharacters();
@@ -19,14 +20,16 @@ function EndPopup(props) {
           className="Game-end-popup-input"
         ></input>
         <div className="Game-end-popup-btn">
-          <button
-            className="Game-end-popup-btn-save"
-            onClick={() => {
-              storeLeaderboardData(props.time);
-            }}
-          >
-            SAVE SCORE
-          </button>
+          <Link to="/leaderboard">
+            <button
+              className="Game-end-popup-btn-save"
+              onClick={() => {
+                storeLeaderboardData(props.time);
+              }}
+            >
+              SAVE SCORE
+            </button>
+          </Link>
           <button
             className="Game-end-popup-btn-again"
             onClick={props.playAgain}
