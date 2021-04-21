@@ -22,7 +22,7 @@ import {
   handleEndGameDom,
   handlePlayAgainDom,
 } from "../utility/dom";
-import { getCharacters } from "../firebase";
+import { getCharacters, charactersDatabase } from "../firebase";
 import calculateTimeSpent from "../utility/timer";
 
 //Images
@@ -34,6 +34,14 @@ import "../styles/Game.css";
 let characters = {};
 let startTime = {};
 let endTime = {};
+
+const characterData = {};
+charactersDatabase.get().then((querySnapshot) => {
+  querySnapshot.forEach((doc) => {
+    characterData[doc.id] = doc.data();
+    console.log(characterData);
+  });
+});
 
 function Game() {
   const [click, setClick] = useState({ x: 0, y: 0 });
@@ -65,25 +73,21 @@ function Game() {
 
   function checkCharacter(event) {
     const character = event.target.id.slice(14);
+    const HEADER_HEIGHT = 200;
 
-    getCharacters(character).then((doc) => {
-      const characterData = doc.data();
-      const HEADER_HEIGHT = 200;
+    if (
+      click.x >= imgSize.w * characterData[character].x[0] &&
+      click.x <= imgSize.w * characterData[character].x[1] &&
+      click.y >= imgSize.h * characterData[character].y[0] + HEADER_HEIGHT &&
+      click.y <= imgSize.h * characterData[character].y[1] + HEADER_HEIGHT
+    ) {
+      event.target.disabled = true;
+      handleCharacterFound(character);
+    } else {
+      handleCharacterNotFound();
+    }
 
-      if (
-        click.x >= imgSize.w * characterData.x[0] &&
-        click.x <= imgSize.w * characterData.x[1] &&
-        click.y >= imgSize.h * characterData.y[0] + HEADER_HEIGHT &&
-        click.y <= imgSize.h * characterData.y[1] + HEADER_HEIGHT
-      ) {
-        event.target.disabled = true;
-        handleCharacterFound(character);
-      } else {
-        handleCharacterNotFound();
-      }
-
-      hideHighlight();
-    });
+    hideHighlight();
   }
 
   function handleCharacterFound(character) {
