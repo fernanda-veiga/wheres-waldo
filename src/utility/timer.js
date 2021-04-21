@@ -18,7 +18,7 @@ function calculateTimeSpent(endTime, startTime) {
     (seconds < 10 ? "0" + seconds : seconds);
 
   console.log(timeStr);
-  return timeStr;
+  return timeStr.length > 8 ? "99:59:59" : timeStr;
 }
 
 export default calculateTimeSpent;
