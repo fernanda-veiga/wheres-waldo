@@ -38,4 +38,32 @@ function storeLeaderboardData(time) {
   return;
 }
 
-export { charactersDatabase, storeLeaderboardData };
+/*function readLeaderboardData() {
+
+}*/
+
+/*
+// Loads chat messages history and listens for upcoming ones.
+function loadMessages() {
+  // Create the query to load the last 12 messages and listen for new ones.
+  var query = firebase.firestore()
+                  .collection('messages')
+                  .orderBy('timestamp', 'desc')
+                  .limit(12);
+  
+  // Start listening to the query.
+  query.onSnapshot(function(snapshot) {
+    snapshot.docChanges().forEach(function(change) {
+      if (change.type === 'removed') {
+        deleteMessage(change.doc.id);
+      } else {
+        var message = change.doc.data();
+        displayMessage(change.doc.id, message.timestamp, message.name,
+                       message.text, message.profilePicUrl, message.imageUrl);
+      }
+    });
+  });
+}
+*/
+
+export { charactersDatabase, leaderboardDatabase, storeLeaderboardData };
