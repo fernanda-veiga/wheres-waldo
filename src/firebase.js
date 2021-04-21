@@ -15,17 +15,25 @@ let firebaseConfig = {
 //Initialize Firebase products
 !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
 
-//Get characters positions
+//Database paths
 let charactersDatabase = firebase.firestore().collection("characters");
-//.doc("4io2HrKnIaopfg1C8XMQ");
 
+let leaderboardDatabase = firebase.firestore().collection("leaderboard");
+//.doc("scores");
+
+//Data functions
 function getCharacters(character) {
   return charactersDatabase.doc(character).get();
 }
 
-/*function updateCharacters(character, boolean) {
-  charactersDatabase.update({ [character]: { found: boolean } });
-}*/
+function storeLeaderboardData(time) {
+  const nameInput = document.querySelector(".Game-end-popup-input");
+  //leaderboardDatabase.update({ name: nameInput.value, time: time });
+  leaderboardDatabase.add({
+    name: nameInput.value,
+    time: time,
+  });
+}
 
 //export default firebaseConfig;
-export { getCharacters /*, updateCharacters*/ };
+export { getCharacters, storeLeaderboardData /*, updateCharacters*/ };
