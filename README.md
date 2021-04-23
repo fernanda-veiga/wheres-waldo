@@ -2,7 +2,7 @@
 
 This is a solution to the [Where's Waldo (A Photo Tagging App)](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/where-s-waldo-a-photo-tagging-app) project from [The Odin Project](https://www.theodinproject.com/paths) JavaScript curriculum.
 
-## Table of contents
+## Table of Contents
 
 - [Overview](#overview)
   - [The Project](#the-challenge)
