@@ -1,17 +1,10 @@
-//TODO: add the leaderboard
-//TODO: display a timer
-
 import React, { useState } from "react";
-
-//Components
 import Header from "./Header";
 import Characters from "./game-components/Characters";
 import StartPopup from "./game-components/StartPopup";
 import EndPopup from "./game-components/EndPopup";
 import Highlight from "./game-components/Highlight";
 import Info from "./game-components/Info";
-
-//Utility
 import createCharacters, { charactersNames } from "../utility/characters";
 import {
   showHighlight,
@@ -24,11 +17,7 @@ import {
 } from "../utility/dom";
 import { charactersDatabase } from "../firebase";
 import calculateTimeSpent from "../utility/timer";
-
-//Images
 import wheresWaldoImg from "../images/wheres-waldo.jpg";
-
-//CSS
 import "../styles/Game.css";
 
 let characters = {};
@@ -39,7 +28,6 @@ const characterData = {};
 charactersDatabase.get().then((querySnapshot) => {
   querySnapshot.forEach((doc) => {
     characterData[doc.id] = doc.data();
-    console.log(characterData);
   });
 });
 
@@ -53,11 +41,10 @@ function Game() {
     handleStartGameDom();
     characters = createCharacters();
     startTime = new Date();
+    handleStopwatch();
   }
 
   function endGame() {
-    endTime = new Date();
-    setTime(calculateTimeSpent(endTime, startTime));
     handleEndGameDom();
   }
 
@@ -114,6 +101,23 @@ function Game() {
     }
   }
 
+  function handleStopwatch() {
+    const stopwatch = document.querySelector(".stopwatch");
+    const stopwatchTimer = setInterval(() => {
+      stopwatch.innerHTML = calculateTimeSpent(new Date(), startTime);
+      if (
+        charactersNames.every(
+          (character) => characters[character].found === true
+        )
+      ) {
+        endTime = new Date();
+        setTime(calculateTimeSpent(endTime, startTime));
+        stopwatch.innerHTML = calculateTimeSpent(endTime, startTime);
+        clearInterval(stopwatchTimer);
+      }
+    }, 1000);
+  }
+
   return (
     <div className="Game">
       <Header type="game" />
@@ -122,6 +126,7 @@ function Game() {
         <Info msg={infoMsg} />
         <div className="Game-info">
           <Characters />
+          <div className="stopwatch">00:00:00</div>
         </div>
         <StartPopup startGame={startGame} />
         <EndPopup time={time} playAgain={playAgain} />
