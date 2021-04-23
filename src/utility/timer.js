@@ -1,11 +1,7 @@
 import { differenceInSeconds } from "date-fns";
 
 function calculateTimeSpent(endTime, startTime) {
-  console.log(startTime.toLocaleTimeString());
-  console.log(endTime.toLocaleTimeString());
   const fullSeconds = differenceInSeconds(endTime, startTime);
-  console.log(fullSeconds);
-
   const hours = Math.floor(fullSeconds / 3600);
   const minutes = Math.floor((fullSeconds % 3600) / 60);
   const seconds = fullSeconds % 60;
@@ -17,7 +13,6 @@ function calculateTimeSpent(endTime, startTime) {
     ":" +
     (seconds < 10 ? "0" + seconds : seconds);
 
-  console.log(timeStr);
   return timeStr.length > 8 ? "99:59:59" : timeStr;
 }
 

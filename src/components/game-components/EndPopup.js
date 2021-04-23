@@ -1,13 +1,9 @@
 import React from "react";
-//import createCharacters, { charactersNames } from "../../utility/characters";
-//import wheresWaldoImg from "../../images/wheres-waldo.jpg";
 import { storeLeaderboardData } from "../../firebase";
 import "../../styles/EndPopup.css";
 import { Link } from "react-router-dom";
 
 function EndPopup(props) {
-  //const characters = createCharacters();
-
   return (
     <div className="Game-end-popup-container">
       <div className="Game-end-popup">
@@ -16,6 +12,7 @@ function EndPopup(props) {
         </p>
         <input
           type="text"
+          maxLength="20"
           placeholder="Type your name"
           className="Game-end-popup-input"
         ></input>

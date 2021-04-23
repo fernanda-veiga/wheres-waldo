@@ -23,7 +23,6 @@ function Leaderboard() {
 
     data.docs.forEach((doc) => {
       newLeaderboard.push(doc.data());
-      console.log(newLeaderboard);
     });
 
     setLeaderboard(newLeaderboard);
