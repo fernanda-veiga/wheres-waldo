@@ -1,6 +1,6 @@
-# Frontend Mentor - Interactive pricing component solution
+# The Odin Project - Where's Waldo (A Photo Tagging App)
 
-This is a solution to the [Interactive pricing component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-pricing-component-t0m8PIyY8). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Where's Waldo (A Photo Tagging App) project](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/where-s-waldo-a-photo-tagging-app) from [The Odin Project](https://www.theodinproject.com/paths) JavaScript curriculum.
 
 ## Table of contents
 
@@ -20,30 +20,23 @@ This is a solution to the [Interactive pricing component challenge on Frontend M
 
 ## Overview
 
-### The challenge
+### The Project
 
 Users should be able to:
 
-- View the optimal layout for the app depending on their device's screen size
-- See hover states for all interactive elements on the page
-- Use the slider and toggle to see prices for different page view numbers
+- Play the Where's Waldo game by finding characters in the image and clicking them.
+- See which characters were already found and the time elapsed on the top bar.
+- Save their score and check the high scores on the leaderboard.
+- Switch between the game page and the leaderboard page.
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![](./src/images/start-popup.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Repository URL: https://github.com/fernanda-veiga/wheres-waldo
+- Live Website URL: https://fernanda-veiga.github.io/wheres-waldo/
 
 ## My process
 
