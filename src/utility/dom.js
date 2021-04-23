@@ -61,6 +61,7 @@ function handlePlayAgainDom() {
   document
     .querySelectorAll(".Game-info-character-img")
     .forEach((img) => (img.style.filter = "none"));
+  document.querySelector(".stopwatch").innerHTML = "00:00:00";
 }
 
 export {
